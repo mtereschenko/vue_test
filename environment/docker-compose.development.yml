@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  nginx:
+    image: "${PROJECT_NAME}/nginx:development"
+    container_name: ${PROJECT_NAME}-nginx
+    build: 
+      context: ./
+      dockerfile: ./containers/nginx/Dockerfile
+      target: development
+    depends_on:
+      - node
+    tty: true
+    ports:
+      - 80:80
+    volumes:
+      - ./artifacts/nginx/:/var/log/nginx:cached
+  node:
+    image: "${PROJECT_NAME}/node:development"
+    container_name: ${PROJECT_NAME}-node
+    build:
+      context: ./
+      dockerfile: ./containers/node/Dockerfile
+      target: development
+    ports:
+      - 5173:5173
+    volumes:
+      - ${APP_PATH}:/app:cached
+  
