@@ -18,13 +18,6 @@ BUILD_TARGET := $(if $(t),$(t),development)
 help: ## Help.
 	@grep -E '^[a-zA-Z-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "[32m%-27s[0m %s\n", $$1, $$2}'
 
-init: ## Project installation.
-	@rm -f ./.env
-	@cp .env.example .env
-	@make init_app_directory
-	# @docker-compose -f docker-compose.init.yml build
-	# @docker-compose -f docker-compose.init.yml up
-
 build: ## Build images.
 	@docker-compose -f docker-compose.$(BUILD_TARGET).yml build
 
@@ -38,9 +31,6 @@ shell: ## Internal image bash command line.
 start: ## Start previously builded application images.
 	@make start_node
 	@make start_nginx
-
-run: ## Run ruby debugger session.
-	# @docker-compose -f docker-compose.$(BUILD_TARGET).yml exec ruby /bin/ash /rdebug_ide/runner.sh
 
 start_node: ## Start node image.
 	@if [[ -z `docker ps | grep node` ]]; then \

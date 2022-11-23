@@ -2,20 +2,6 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Init new project",
-      "type": "shell",
-      "command": "cd ${workspaceRoot}/environment && make init",
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-      },
-      "options": {
-        "statusbar": {
-          "label": "Init new project"
-        }
-      }
-    },
-    {
       "label": "Build environment",
       "type": "shell",
       "command": "cd ${workspaceRoot}/environment && make build",
@@ -44,7 +30,7 @@
       }
     },
     {
-      "label": "Run shell ruby",
+      "label": "Run shell node",
       "type": "shell",
       "command": "cd ${workspaceRoot}/environment && make shell",
       "presentation": {
@@ -53,7 +39,7 @@
       },
       "options": {
         "statusbar": {
-          "label": "Run shell ruby"
+          "label": "Run shell node"
         }
       }
     },
